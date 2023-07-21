@@ -1,42 +1,15 @@
 ﻿module Genetic.Program
 
-let evaluate  = List.sortByDescending List.sum
+open Genetic.Business
 
-let selection (population: int list list): (int list * int list) list  =
-    let rec loop acc = function
-    | x::y::rest -> loop ((x, y)::acc) rest
-    | _ -> List.rev acc
+let rnd = Genetic.API.Random.random
+let genotype () = [ for _ in 1 .. 1000 do rnd(2) ]
+let fitnessFunction (xs: int list) = List.sum xs
+let maxFitness = 999
+let opts = {populationSize = 100;
+            randomFn = rnd}
 
-    loop [] population
+let soln = Business.run opts fitnessFunction genotype maxFitness
 
-let crossover random =
-     List.map
-        (fun (a, b) ->
-            let splitAt = min a b |> List.length |> random |> List.splitAt
-            let (x1,y1), (x2,y2) = splitAt a, splitAt b
-            let res = (x1 @ y2), (y1 @ x2)
-            res)
-     >> List.collect (function (list1, list2) -> [list1; list2])
-
-
-
-let rec algorithm population =
-    let best =  List.maxBy List.sum population
-    printfn $"Current Best: [{List.sum best}] {best}"
-    
-    if (List.sum best) > 31 then
-        printf $"YO: {List.sum best}"
-        best
-    else
-        population
-        |> evaluate
-        |> selection
-        |> (crossover Genetic.API.Random.random)
-        |> algorithm
-
-
-let test = [[10; 11; 3]; [7; 8; 9]; [4; 5; 6]; [1; 2; 12]]
-algorithm test
-
-
-
+printfn "==========================================="
+printfn $"{soln}"
