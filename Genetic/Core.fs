@@ -1,7 +1,6 @@
-﻿module Genetic.Business
+﻿module Genetic.Core
 
-type Options = {populationSize: int
-                randomFn: int -> int}
+open Genetic.Types
 
 let initialize opts (genotype: unit -> int list) =
     let size = opts.populationSize
