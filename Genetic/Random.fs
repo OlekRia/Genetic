@@ -1,4 +1,4 @@
-﻿module Genetic.API.Random
+﻿module Genetic.Random
 
 let random toValue =
     let r = new System.Random()

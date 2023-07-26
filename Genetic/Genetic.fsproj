@@ -7,7 +7,7 @@
 	<ItemGroup>
 		<Compile Include="Types.fs" />
 		<Compile Include="List.fs" />
-		<Compile Include="API.Random.fs" />
+		<Compile Include="Random.fs" />
 		<Compile Include="Core.fs" />
 		<Compile Include="Program.fs" />
 	</ItemGroup>

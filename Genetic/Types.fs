@@ -10,4 +10,4 @@ type Chromosome = {genes: int list
 
 type Problem = {genotype: unit -> Chromosome
                 fitnessFunction: Chromosome -> int
-                isTGerminal: int list -> bool}
+                isTerminate: Chromosome list -> bool}

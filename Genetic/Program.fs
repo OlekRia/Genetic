@@ -2,15 +2,26 @@
 
 open Genetic.Types
 
-let rnd = Genetic.API.Random.random
 
 let opts = {populationSize = 100;
-            randomFn = rnd}
-let genotype () = [ for _ in 1 .. 1000 do rnd(2) ]
-let fitnessFunction (xs: int list) = List.sum xs
-let maxFitness = 1000
+            randomFn = Genetic.Random.random}
 
-let soln = Core.run opts fitnessFunction genotype maxFitness
+let problem =
+    {genotype = fun () -> let SIZE = 1000
+                          {age = 0
+                           size = SIZE
+                           fitness = 0
+                           genes = [ for _ in 1 .. SIZE do opts.randomFn(2) ]}
+     fitnessFunction = fun chromosomes -> List.sum chromosomes.genes
+     isTerminate =
+        fun chromosomes ->
+            chromosomes
+            |> List.map (fun x -> x.fitness)
+            |> List.max
+            |> fun x -> x > 998
+     }
+
+let soln = Core.run opts problem
 
 printfn "==========================================="
 printfn $"{soln}"
