@@ -9,9 +9,12 @@
 		<None Include="docs\Readme.md" />
 		<Compile Include="Types.fs" />
 		<Compile Include="List.fs" />
+		<Compile Include="Fn.Strings.fs" />
 		<Compile Include="Random.fs" />
 		<Compile Include="Core.fs" />
 		<Compile Include="Program.fs" />
-		<None Include="oneMax.fsx" />
+		<None Include="script.oneMax.fsx" />
+		<None Include="script.speller.fsx" />
+		<Compile Include="Fn.Chars.fs" />
 	</ItemGroup>
 </Project>
