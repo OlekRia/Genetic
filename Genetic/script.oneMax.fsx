@@ -1,7 +1,7 @@
-﻿#load "Types.fs"
-#load "List.fs"
-#load "Random.fs"
-#load "Core.fs"
+﻿#load "src/Types.fs"
+#load "src/List.fs"
+#load "src/Random.fs"
+#load "src/Core.fs"
 
 open Genetic.Types
 
@@ -21,7 +21,7 @@ let problem =
                 [ for _ in 1..SIZE do
                       opts.randomFn (2) ] }
       fitnessFunction = fun chromosomes -> List.sum chromosomes.genes |> float
-      mutationFunction = fun xs -> Genetic.List.shuffle xs
+      mutationFunction = Genetic.List.shuffle
       isTerminate =
         List.map (fun x -> x.fitness)
         >> List.max

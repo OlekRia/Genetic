@@ -1,8 +1,8 @@
-﻿#load "Types.fs"
-#load "List.fs"
-#load "Strings.fs"
-#load "Random.fs"
-#load "Core.fs"
+﻿#load "src/Types.fs"
+#load "src/List.fs"
+#load "src/Fn.Strings.fs"
+#load "src/Random.fs"
+#load "src/Core.fs"
 
 open Genetic.Types
 open Genetic.Strings
